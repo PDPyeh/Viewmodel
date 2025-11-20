@@ -57,19 +57,21 @@ fun FormSiswa(
                     (containerColor = colorResource(id = R.color.teal_700))
             )
         }
-    ){isiRuang ->
+    ){ isiRuang ->
         Column(modifier = Modifier.padding(paddingValues = isiRuang),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             OutlinedTextField(
-                value = "",
+                value = txtNama,
                 singleLine = true,
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .width(width = 250.dp),
                 label = {Text(text = "Nama Lengkap")},
-                onValueChange = {},
+                onValueChange = {
+                    txtNama = it
+                },
             )
             HorizontalDivider(modifier = Modifier
                 .padding(all = 20.dp)
@@ -95,12 +97,14 @@ fun FormSiswa(
                 color = Color.Red
             )
             OutlinedTextField(
-                value = "",
+                value = txtAlamat,
                 singleLine = true,
                 modifier = Modifier
                     .width(width = 250.dp),
                 label = {Text(text = "Alamat")},
-                onValueChange = {},
+                onValueChange = {
+                    txtAlamat = it
+                },
             )
             Spacer(modifier = Modifier.height(height = 30.dp))
             Button(
