@@ -33,10 +33,11 @@ fun TampilSiswa(
     onBackButtonClicked: () -> Unit
 ){
     val items = listOf(
-        Pair(first = stringResource(id = R.string.nama), second = "Contoh Nama"),
-        Pair(first = stringResource(id = R.string.gender), second = "Lainnya"),
-        Pair(first = stringResource(id = R.string.alamat), second = "Yogyakarta")
+        stringResource(id = R.string.nama)   to statusUiSiswa.nama,
+        stringResource(id = R.string.gender) to statusUiSiswa.gender,
+        stringResource(id = R.string.alamat) to statusUiSiswa.alamat
     )
+
 
     Scaffold(
         topBar = {
