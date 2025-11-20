@@ -5,11 +5,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.viewmodel.model.DataJK.JenisK
 import com.example.viewmodel.view.FormSiswa
 import com.example.viewmodel.view.TampilSiswa
 import com.example.viewmodel.viewmodel.SiswaViewModel
@@ -33,16 +35,20 @@ fun DataApp(
 
             modifier = Modifier.padding(paddingValues = isiRuang)){
             composable(route = Navigasi.Formulirku.name){
+                val konteks = LocalContext.current
                 FormSiswa (
-                    OnSubmitButtonClicked = {
+                    pilihanJK = JenisK.map { id -> konteks.resources.getString(id) },
+                    onSubmitButtonClicked = {
+                        viewModel.setSiswa(it)
                         navController.navigate(route = Navigasi.Detail.name)
                     }
                 )
             }
             composable(route = Navigasi.Detail.name) {
                 TampilSiswa(
+                    statusUiSiswa = uiState.value,
                     onBackButtonClicked = {
-                        cancelAndBackToFormulirku(navController)
+                        navController.popBackStack()
                     }
                 )
             }
